@@ -21,8 +21,12 @@ export const customInstance = async <T>(
     config: AxiosRequestConfig,
     options?: AxiosRequestConfig
 ): Promise<T> => {
-    return AXIOS_INSTANCE({
+    const { data } = await AXIOS_INSTANCE({
         ...config,
         ...options,
-    }).then(({ data }) => data);
+    });
+
+    await new Promise((r) => setTimeout(r, 2000));
+
+    return data;
 };
