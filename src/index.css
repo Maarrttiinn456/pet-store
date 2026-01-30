@@ -171,3 +171,7 @@
     --shadow-xl: var(--shadow-xl);
     --shadow-2xl: var(--shadow-2xl);
 }
+
+@utility container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
