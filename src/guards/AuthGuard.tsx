@@ -1,5 +1,5 @@
-import { Outlet } from 'react-router';
-import { Navigate } from 'react-router';
+import { Outlet } from "react-router";
+import { Navigate } from "react-router";
 const AuthGuard = () => {
     const isAuthenticated = false;
 

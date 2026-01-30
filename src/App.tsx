@@ -1,10 +1,10 @@
-import { Routes, Route } from 'react-router';
-import HomePage from '@/pages/HomePage';
-import AppLayout from '@/layouts/AppLayout';
-import AuthLayout from '@/layouts/AuthLayout';
-import LoginPage from '@/pages/LoginPage';
-import RegisterPage from '@/pages/RegisterPage';
-import AuthGuard from './guards/AuthGuard';
+import { Routes, Route } from "react-router";
+import HomePage from "@/pages/HomePage";
+import AppLayout from "@/layouts/AppLayout";
+import AuthLayout from "@/layouts/AuthLayout";
+import LoginPage from "@/pages/LoginPage";
+import RegisterPage from "@/pages/RegisterPage";
+import AuthGuard from "./guards/AuthGuard";
 
 const App = () => {
     return (
