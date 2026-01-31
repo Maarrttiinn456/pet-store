@@ -7,14 +7,9 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useTheme } from "@/components/theme-provider";
-import { useEffect, useState } from "react";
 
 export function ModeToggle() {
     const { setTheme, theme } = useTheme(); // 👈 tady theme
-    const [mounted, setMounted] = useState(false);
-
-    useEffect(() => setMounted(true), []);
-    if (!mounted) return null;
 
     const isDark =
         theme === "dark" ||
