@@ -14,7 +14,7 @@ const PetsFilters = ({ onChangeQuery }: { onChangeQuery: (e: string) => void }) 
             <div className="flex items-end gap-12">
                 <div>
                     <label htmlFor="search" className="mb-1 block">
-                        Jméno
+                        Název
                     </label>
                     <Input
                         type="text"

@@ -1,16 +1,16 @@
-import AuthCard from "@/components/auth/AuthCard";
+import BaseCard from "@/components/BaseCard";
 import LoginForm from "@/components/auth/LoginForm";
 
 const LoginPage = () => {
     return (
-        <AuthCard
+        <BaseCard
             title="Přihlásit se"
             description="Pokud nemáte účet, "
             link="/register"
             linkText="zaregistrujte se"
         >
             <LoginForm />
-        </AuthCard>
+        </BaseCard>
     );
 };
 

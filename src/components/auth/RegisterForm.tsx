@@ -6,6 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useCreateUser } from "@/api/petstore";
 import { toast } from "sonner";
+import { Field, FieldError, FieldGroup, FieldLabel } from "@/components/ui/field";
 
 const registerSchema = z.object({
     firstname: z.string().min(2, { message: "Jméno musí mít alespoň 2 znaky" }),
@@ -50,40 +51,43 @@ const RegisterForm = () => {
     };
 
     return (
-        <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
-            <div className="flex gap-4 w-full">
-                <div className="w-full">
-                    <label className="mb-2 block">Jméno</label>
-                    <Input type="text" {...register("firstname")} />
-                    {errors.firstname && (
-                        <p className="text-destructive text-sm">{errors.firstname.message}</p>
-                    )}
+        <form onSubmit={handleSubmit(onSubmit)}>
+            <FieldGroup>
+                <div className="flex gap-4 w-full">
+                    <Field className="w-full">
+                        <FieldLabel htmlFor="register-firstname">Jméno</FieldLabel>
+                        <Input id="register-firstname" type="text" {...register("firstname")} />
+                        <FieldError errors={[errors.firstname]} />
+                    </Field>
+                    <Field className="w-full">
+                        <FieldLabel htmlFor="register-surname">Příjmení</FieldLabel>
+                        <Input id="register-surname" type="text" {...register("surname")} />
+                        <FieldError errors={[errors.surname]} />
+                    </Field>
                 </div>
-                <div className="w-full">
-                    <label className="mb-2 block">Příjmení</label>
-                    <Input type="text" {...register("surname")} />
-                    {errors.surname && (
-                        <p className="text-destructive text-sm">{errors.surname.message}</p>
-                    )}
-                </div>
-            </div>
-            <div>
-                <label className="mb-2 block">Username</label>
-                <Input type="text" {...register("username")} />
-                {errors.username && (
-                    <p className="text-destructive text-sm">{errors.username.message}</p>
-                )}
-            </div>
-            <div>
-                <label className="mb-2 block">Heslo</label>
-                <Input type="password" autoComplete="false" {...register("password")} />
-                {errors.password && (
-                    <p className="text-destructive text-sm">{errors.password.message}</p>
-                )}
-            </div>
-            <Button className="mt-4 w-full cursor-pointer" type="submit" disabled={isSubmitting}>
-                {isSubmitting ? "Registruji..." : "Registrujte se"}
-            </Button>
+                <Field>
+                    <FieldLabel htmlFor="register-username">Username</FieldLabel>
+                    <Input id="register-username" type="text" {...register("username")} />
+                    <FieldError errors={[errors.username]} />
+                </Field>
+                <Field>
+                    <FieldLabel htmlFor="register-password">Heslo</FieldLabel>
+                    <Input
+                        id="register-password"
+                        type="password"
+                        autoComplete="false"
+                        {...register("password")}
+                    />
+                    <FieldError errors={[errors.password]} />
+                </Field>
+                <Button
+                    className="mt-4 w-full cursor-pointer"
+                    type="submit"
+                    disabled={isSubmitting}
+                >
+                    {isSubmitting ? "Registruji..." : "Registrujte se"}
+                </Button>
+            </FieldGroup>
         </form>
     );
 };

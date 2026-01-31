@@ -1,6 +1,7 @@
 import type { Pet } from "@/api/petstore";
 import CustomSpinner from "../CustomSpinner";
 import { Button } from "../ui/button";
+import { Link } from "react-router";
 
 type PetListProps = {
     data?: Pet[];
@@ -15,8 +16,8 @@ const PetsList = ({ data = [], isLoading, isError, error, isFetching }: PetListP
         <>
             <div className="flex justify-between mb-4">
                 <div className="text-2xl  font-bold text-card-foreground">Všechna zvířátka</div>
-                <Button variant="default" size="lg" className="cursor-pointer">
-                    Přidat položku
+                <Button asChild variant="default" size="lg" className="cursor-pointer">
+                    <Link to="/add-pets">Přidat položku</Link>
                 </Button>
             </div>
 

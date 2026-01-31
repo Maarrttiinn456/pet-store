@@ -1,8 +1,8 @@
 import { Link } from "react-router";
-import { CardHeader, CardTitle, CardDescription, CardContent } from "../ui/card";
-import { Card } from "../ui/card";
+import { CardHeader, CardTitle, CardDescription, CardContent } from "./ui/card";
+import { Card } from "./ui/card";
 
-type AuthCardProps = {
+type BaseCardProps = {
     children: React.ReactNode;
     title: string;
     description: string;
@@ -10,7 +10,7 @@ type AuthCardProps = {
     linkText?: string;
 };
 
-const AuthCard = ({ title, description, children, link, linkText }: AuthCardProps) => {
+const BaseCard = ({ title, description, children, link, linkText }: BaseCardProps) => {
     return (
         <Card className="w-full max-w-md">
             <CardHeader>
@@ -32,4 +32,4 @@ const AuthCard = ({ title, description, children, link, linkText }: AuthCardProp
     );
 };
 
-export default AuthCard;
+export default BaseCard;

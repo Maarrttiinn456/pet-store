@@ -7,6 +7,7 @@ import useLogin from "@/hooks/auth/useLogin";
 import { useNavigate } from "react-router";
 import { toast } from "sonner";
 import { useAuth } from "@/contexts/AuthProvider ";
+import { Field, FieldError, FieldGroup, FieldLabel } from "@/components/ui/field";
 
 const loginSchema = z.object({
     username: z.string().min(2, { message: "Uživatelské jméno musí mít alespoň 2 znaky" }),
@@ -53,24 +54,31 @@ const LoginForm = () => {
     };
 
     return (
-        <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
-            <div>
-                <label className="mb-2 block">Username</label>
-                <Input type="text" {...register("username")} />
-                {errors.username && (
-                    <p className="text-destructive text-sm">{errors.username.message}</p>
-                )}
-            </div>
-            <div>
-                <label className="mb-2 block">Password</label>
-                <Input type="password" autoComplete="false" {...register("password")} />
-                {errors.password && (
-                    <p className="text-destructive text-sm">{errors.password.message}</p>
-                )}
-            </div>
-            <Button className="mt-4 w-full cursor-pointer" type="submit" disabled={isSubmitting}>
-                {isSubmitting ? "Přihlašuji se..." : "Přihlásit se"}
-            </Button>
+        <form onSubmit={handleSubmit(onSubmit)}>
+            <FieldGroup>
+                <Field>
+                    <FieldLabel htmlFor="login-username">Username</FieldLabel>
+                    <Input id="login-username" type="text" {...register("username")} />
+                    <FieldError errors={[errors.username]} />
+                </Field>
+                <Field>
+                    <FieldLabel htmlFor="login-password">Password</FieldLabel>
+                    <Input
+                        id="login-password"
+                        type="password"
+                        autoComplete="false"
+                        {...register("password")}
+                    />
+                    <FieldError errors={[errors.password]} />
+                </Field>
+                <Button
+                    className="mt-4 w-full cursor-pointer"
+                    type="submit"
+                    disabled={isSubmitting}
+                >
+                    {isSubmitting ? "Přihlašuji se..." : "Přihlásit se"}
+                </Button>
+            </FieldGroup>
         </form>
     );
 };
