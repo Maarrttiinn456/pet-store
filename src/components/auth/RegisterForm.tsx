@@ -76,7 +76,7 @@ const RegisterForm = () => {
             </div>
             <div>
                 <label className="mb-2 block">Heslo</label>
-                <Input type="password" {...register("password")} />
+                <Input type="password" autoComplete="false" {...register("password")} />
                 {errors.password && (
                     <p className="text-destructive text-sm">{errors.password.message}</p>
                 )}

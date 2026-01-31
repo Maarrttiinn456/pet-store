@@ -1,24 +1,12 @@
+import { usePetStatusFilter } from "@/hooks/pets/usePetStatusFilter";
 import { Checkbox } from "../ui/checkbox";
 import { Field } from "../ui/field";
 import { Input } from "../ui/input";
 import { PetStatus } from "@/api/petstore";
+import { X } from "lucide-react";
 
-const PetsFilters = ({
-    status,
-    onChangeCheckbox,
-    onChangeQuery,
-}: {
-    status: PetStatus[];
-    onChangeCheckbox: (nextStatus: PetStatus[]) => void;
-    onChangeQuery: (e: string) => void;
-}) => {
-    const handleStatusChange = (value: PetStatus) => {
-        if (status.includes(value)) {
-            onChangeCheckbox(status.filter((s) => s !== value));
-        } else {
-            onChangeCheckbox([...status, value]);
-        }
-    };
+const PetsFilters = ({ onChangeQuery }: { onChangeQuery: (e: string) => void }) => {
+    const { statuses, toggleStatus, resetFilters, params } = usePetStatusFilter();
 
     return (
         <div className="mb-12">
@@ -35,23 +23,34 @@ const PetsFilters = ({
                         onChange={(e) => onChangeQuery(e.target.value)}
                     />
                 </div>
-                <div className="flex gap-4">
-                    {Object.entries(PetStatus).map(([key, value]) => {
-                        return (
-                            <Field key={value} orientation="horizontal">
-                                <Checkbox
-                                    id={key}
-                                    name="terms-checkbox"
-                                    value={value}
-                                    checked={status.includes(value)}
-                                    onClick={() => handleStatusChange(value as PetStatus)}
-                                />
-                                <label htmlFor={key}>
-                                    {key.charAt(0).toUpperCase() + key.slice(1)}
-                                </label>
-                            </Field>
-                        );
-                    })}
+                <div className="flex gap-4 relative">
+                    {Object.values(PetStatus).map((status) => (
+                        <Field key={status} orientation="horizontal">
+                            <Checkbox
+                                id={status}
+                                name="terms-checkbox"
+                                value={status}
+                                checked={statuses.includes(status)}
+                                onCheckedChange={(checked) =>
+                                    toggleStatus(status, checked === true)
+                                }
+                            />
+                            <label htmlFor={status}>
+                                {status.charAt(0).toUpperCase() + status.slice(1)}
+                            </label>
+                        </Field>
+                    ))}
+
+                    {params.size > 0 && (
+                        <button
+                            type="button"
+                            className="absolute -top-8 left-1/2 text-sm -translate-x-1/2 w-full text-center cursor-pointer text-destructive flex items-center justify-center gap-2 bg-transparent border-none"
+                            onClick={() => resetFilters()}
+                        >
+                            <X className="w-4 h-4" />
+                            <span>Vymazat filtry</span>
+                        </button>
+                    )}
                 </div>
             </div>
         </div>

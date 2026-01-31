@@ -1,5 +1,6 @@
 import type { Pet } from "@/api/petstore";
 import CustomSpinner from "../CustomSpinner";
+import { Button } from "../ui/button";
 
 type PetListProps = {
     data?: Pet[];
@@ -12,7 +13,12 @@ type PetListProps = {
 const PetsList = ({ data = [], isLoading, isError, error, isFetching }: PetListProps) => {
     return (
         <>
-            <div className="text-2xl mb-4 font-bold text-card-foreground">Všechna zvířátka</div>
+            <div className="flex justify-between mb-4">
+                <div className="text-2xl  font-bold text-card-foreground">Všechna zvířátka</div>
+                <Button variant="default" size="lg" className="cursor-pointer">
+                    Přidat položku
+                </Button>
+            </div>
 
             {isLoading && <CustomSpinner />}
 
@@ -36,7 +42,7 @@ const PetsList = ({ data = [], isLoading, isError, error, isFetching }: PetListP
                     {data.map((pet, idx) => (
                         <div
                             key={pet.id ?? `${pet.name}-${idx}`}
-                            className="bg-card-foreground text-card p-4 rounded-sm"
+                            className="dark:bg-card-foreground text-card p-4 rounded-sm"
                         >
                             <div className="text-lg font-bold overflow-hidden">
                                 {pet.name ?? "-"}
