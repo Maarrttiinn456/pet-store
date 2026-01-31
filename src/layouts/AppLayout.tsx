@@ -2,11 +2,11 @@ import { Outlet } from "react-router";
 
 const AppLayout = () => {
     return (
-        <div className="bg-background min-h-screen text-foreground">
-            <div className="container mx-auto">
+        <>
+            <div className="mt-12">
                 <Outlet />
             </div>
-        </div>
+        </>
     );
 };
 

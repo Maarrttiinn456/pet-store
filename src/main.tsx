@@ -7,14 +7,17 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
 import App from "@/App.tsx";
 import "@/index.css";
+import AuthProvider from "./contexts/AuthProvider ";
 
 createRoot(document.getElementById("root")!).render(
     <StrictMode>
-        <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+        <ThemeProvider defaultTheme="dark">
             <QueryClientProvider client={queryClient}>
                 <BrowserRouter>
-                    <App />
-                    <Toaster />
+                    <AuthProvider>
+                        <App />
+                        <Toaster />
+                    </AuthProvider>
                 </BrowserRouter>
             </QueryClientProvider>
         </ThemeProvider>

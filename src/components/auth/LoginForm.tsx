@@ -6,6 +6,7 @@ import { z } from "zod";
 import useLogin from "@/hooks/auth/useLogin";
 import { useNavigate } from "react-router";
 import { toast } from "sonner";
+import { useAuth } from "@/contexts/AuthProvider ";
 
 const loginSchema = z.object({
     username: z.string().min(2, { message: "Uživatelské jméno musí mít alespoň 2 znaky" }),
@@ -19,6 +20,7 @@ type LoginSchema = z.infer<typeof loginSchema>;
 
 const LoginForm = () => {
     const { mutateAsync: loginUser } = useLogin();
+    const { logIn } = useAuth();
 
     const navigate = useNavigate();
 
@@ -33,7 +35,16 @@ const LoginForm = () => {
     const onSubmit: SubmitHandler<LoginSchema> = async (formData) => {
         try {
             await loginUser(formData);
+
+            //Normálně bych dostal z loginUser, pokud by proběhlo úspěšně
+            const accessTokenFromServer = formData.username + new Date().toISOString();
+
+            logIn(accessTokenFromServer, {
+                username: formData.username,
+            });
+
             toast.success("Přihlášení proběhlo úspěšně", { position: "top-center" });
+
             navigate("/");
         } catch (error) {
             toast.error("Špatné jméno nebo heslo", { position: "top-center" });
@@ -52,7 +63,7 @@ const LoginForm = () => {
             </div>
             <div>
                 <label className="mb-2 block">Password</label>
-                <Input type="password" {...register("password")} />
+                <Input type="password" autoComplete="false" {...register("password")} />
                 {errors.password && (
                     <p className="text-destructive text-sm">{errors.password.message}</p>
                 )}
