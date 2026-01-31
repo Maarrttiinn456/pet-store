@@ -8,12 +8,18 @@ export const AXIOS_INSTANCE = Axios.create({
 });
 
 AXIOS_INSTANCE.interceptors.request.use((config) => {
-    console.log("config:", config);
+    const accessToken = localStorage.getItem("accessToken");
+    if (accessToken) {
+        config.headers["Authorization"] = `Bearer ${accessToken}`;
+    }
+
+    //console.log("config:", config);
+
     return config;
 });
 
 AXIOS_INSTANCE.interceptors.response.use((response) => {
-    console.log("response:", response);
+    //console.log("response:", response);
     return response;
 });
 
