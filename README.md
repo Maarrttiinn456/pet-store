@@ -8,7 +8,7 @@ Projekt běží na Netlify: https://pet-store-cz.netlify.app/
 
 ## Funkce
 
-- Přihlášení a registrace (formy s validací)
+- Simulace přihlášení a registrace (formy s validací)
 - Seznam zvířat s filtrováním podle stavu
 - Simulované přidání zvířete (API Petstore reálně neukládá nové záznamy)
 - React Query pro práci s API
@@ -19,8 +19,6 @@ Projekt běží na Netlify: https://pet-store-cz.netlify.app/
    `npm install`
 2. Spuštění dev serveru:
    `npm run dev`
-3. Aplikace poběží na:
-   `http://localhost:5173/`
 
 ## Technologie
 
