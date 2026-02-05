@@ -28,6 +28,7 @@ export function usePetStatusFilter() {
 
     const resetFilters = () => {
         setParams("");
+        //params.delete()
     };
 
     return { statuses, toggleStatus, resetFilters, params };

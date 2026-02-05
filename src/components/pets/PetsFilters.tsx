@@ -48,7 +48,7 @@ const PetsFilters = ({ onChangeQuery }: { onChangeQuery: (e: string) => void }) 
                             onClick={() => resetFilters()}
                         >
                             <X className="w-4 h-4" />
-                            <span>Vymazat filtry</span>
+                            <span>Zrušit</span>
                         </button>
                     )}
                 </div>

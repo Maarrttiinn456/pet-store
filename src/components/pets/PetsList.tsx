@@ -1,6 +1,7 @@
 import type { Pet } from "@/api/petstore";
 import CustomSpinner from "../CustomSpinner";
 import { Button } from "../ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { Link } from "react-router";
 
 type PetListProps = {
@@ -41,15 +42,14 @@ const PetsList = ({ data = [], isLoading, isError, error, isFetching }: PetListP
             {data.length > 0 && (
                 <div className="columns-3 md:columns-4 lg:columns-5 gap-4 space-y-4 [&>*]:break-inside-avoid">
                     {data.map((pet, idx) => (
-                        <div
-                            key={pet.id ?? `${pet.name}-${idx}`}
-                            className="dark:bg-card-foreground text-card p-4 rounded-sm"
-                        >
-                            <div className="text-lg font-bold overflow-hidden">
-                                {pet.name ?? "-"}
-                            </div>
-                            <div>{pet.status}</div>
-                        </div>
+                        <Card key={pet.id ?? `${pet.name}-${idx}`}>
+                            <CardHeader>
+                                <CardTitle className="text-2xl font-bold">
+                                    {pet.name ?? "-"}
+                                </CardTitle>
+                            </CardHeader>
+                            <CardContent>{pet.status}</CardContent>
+                        </Card>
                     ))}
                 </div>
             )}
