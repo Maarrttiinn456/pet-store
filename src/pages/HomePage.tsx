@@ -2,16 +2,19 @@ import { useState } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import PetsFilters from "@/components/pets/PetsFilters";
 import PetsList from "@/components/pets/PetsList";
-import { useFindPetsByStatus } from "@/api/petstore";
-import { usePetStatusesFromUrl } from "@/hooks/pets/usePetStatusesFromUrl";
+import { FindPetsByStatusStatusItem, useFindPetsByStatus } from "@/api/petstore";
+import usePetStatuses from "@/hooks/pets/usePetStatuses";
 
 const HomePage = () => {
     const [query, setQuery] = useState("");
 
-    const { effectiveStatuses } = usePetStatusesFromUrl();
+    const { searchParams } = usePetStatuses();
+
+    const allowStatuses = Object.values(FindPetsByStatusStatusItem);
+    const ststusesToFetch = allowStatuses.filter((s) => searchParams.getAll("status").includes(s));
 
     const { data, isLoading, isFetching, isError, error } = useFindPetsByStatus({
-        status: effectiveStatuses,
+        status: ststusesToFetch,
     });
 
     const filteredData = data?.filter((pet) =>

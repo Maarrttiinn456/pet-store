@@ -3,7 +3,7 @@ import Header from "@/components/Header";
 
 const RootLayout = () => {
     return (
-        <div className="bg-background min-h-screen text-foreground pb-24">
+        <div className="bg-background min-h-screen text-foreground pb-24 overflow-hidden">
             <div className="container">
                 <Header />
                 <Outlet />

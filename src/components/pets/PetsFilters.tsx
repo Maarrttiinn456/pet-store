@@ -1,12 +1,11 @@
-import { usePetStatusFilter } from "@/hooks/pets/usePetStatusFilter";
 import { Checkbox } from "../ui/checkbox";
 import { Field } from "../ui/field";
 import { Input } from "../ui/input";
 import { PetStatus } from "@/api/petstore";
-import { X } from "lucide-react";
+import usePetStatuses from "@/hooks/pets/usePetStatuses";
 
 const PetsFilters = ({ onChangeQuery }: { onChangeQuery: (e: string) => void }) => {
-    const { statuses, toggleStatus, resetFilters, params } = usePetStatusFilter();
+    const { handleChekbox, searchParams } = usePetStatuses();
 
     return (
         <div className="mb-12">
@@ -30,9 +29,9 @@ const PetsFilters = ({ onChangeQuery }: { onChangeQuery: (e: string) => void }) 
                                 id={status}
                                 name="terms-checkbox"
                                 value={status}
-                                checked={statuses.includes(status)}
+                                checked={searchParams.getAll("status").includes(status)}
                                 onCheckedChange={(checked) =>
-                                    toggleStatus(status, checked === true)
+                                    handleChekbox(status, checked === true)
                                 }
                             />
                             <label htmlFor={status}>
@@ -40,17 +39,6 @@ const PetsFilters = ({ onChangeQuery }: { onChangeQuery: (e: string) => void }) 
                             </label>
                         </Field>
                     ))}
-
-                    {params.size > 0 && (
-                        <button
-                            type="button"
-                            className="absolute -top-8 left-1/2 text-sm -translate-x-1/2 w-full text-center cursor-pointer text-destructive flex items-center justify-center gap-2 bg-transparent border-none"
-                            onClick={() => resetFilters()}
-                        >
-                            <X className="w-4 h-4" />
-                            <span>Zrušit</span>
-                        </button>
-                    )}
                 </div>
             </div>
         </div>

@@ -13,8 +13,6 @@ AXIOS_INSTANCE.interceptors.request.use((config) => {
         config.headers["Authorization"] = `Bearer ${accessToken}`;
     }
 
-    //console.log("config:", config);
-
     return config;
 });
 
@@ -31,8 +29,6 @@ export const customInstance = async <T>(
         ...config,
         ...options,
     });
-
-    await new Promise((r) => setTimeout(r, 2000));
 
     return data;
 };

@@ -45,7 +45,11 @@ const PetsList = ({ data = [], isLoading, isError, error, isFetching }: PetListP
                         <Card key={pet.id ?? `${pet.name}-${idx}`}>
                             <CardHeader>
                                 <CardTitle className="text-2xl font-bold">
-                                    {pet.name ?? "-"}
+                                    {pet.name
+                                        ? pet.name.length > 10
+                                            ? pet.name.slice(0, 10) + "..."
+                                            : pet.name
+                                        : "-"}
                                 </CardTitle>
                             </CardHeader>
                             <CardContent>{pet.status}</CardContent>
