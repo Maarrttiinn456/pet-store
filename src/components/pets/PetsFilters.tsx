@@ -10,7 +10,7 @@ const PetsFilters = ({ onChangeQuery }: { onChangeQuery: (e: string) => void }) 
     return (
         <div className="mb-12">
             <div className="text-2xl mb-4 font-bold text-card-foreground">Filtry</div>
-            <div className="flex items-end gap-12">
+            <div className="flex flex-col md:flex-row md:items-end gap-4 md:gap-12">
                 <div>
                     <label htmlFor="search" className="mb-1 block">
                         Název

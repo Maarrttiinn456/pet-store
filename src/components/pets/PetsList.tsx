@@ -40,8 +40,8 @@ const PetsList = ({ data = [], isLoading, isError, error, isFetching }: PetListP
             )}
 
             {data.length > 0 && (
-                <div className="columns-3 md:columns-4 lg:columns-5 gap-4 space-y-4 [&>*]:break-inside-avoid">
-                    {data.map((pet, idx) => (
+                <div className="columns-2 sm:columns-3 md:columns-4 lg:columns-5 gap-4 space-y-4 [&>*]:break-inside-avoid">
+                    {data.slice(0, 40).map((pet, idx) => (
                         <Card key={pet.id ?? `${pet.name}-${idx}`}>
                             <CardHeader>
                                 <CardTitle className="text-2xl font-bold">

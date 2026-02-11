@@ -1,0 +1,12 @@
+name: Hello Martin (reusable)
+
+on:
+    workflow_call:
+
+jobs:
+    hello:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Say hello
+              run: echo "Hello Martin"

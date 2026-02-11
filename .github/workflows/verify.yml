@@ -1,0 +1,12 @@
+name: Run verify on PR
+
+on:
+    pull_request:
+        branches:
+            - "**"
+
+jobs:
+    verify:
+        uses: ./.github/workflows/workflow.verify.yml
+    hello:
+        uses: ./.github/workflows/workflow.hello.yml

@@ -7,18 +7,18 @@ type PetStatusType = PetStatus;
 const usePetStatuses = () => {
     const [searchParams, setSearchParams] = useSearchParams();
 
-    const handleChekbox = (data: PetStatusType, checked: boolean) => {
+    const handleChekbox = (status: PetStatusType, checked: boolean) => {
         setSearchParams((prev) => {
             const params = new URLSearchParams(prev);
 
             let statuses = params.getAll("status");
 
             if (checked) {
-                if (!statuses.includes(data)) {
-                    statuses.push(data);
+                if (!statuses.includes(status)) {
+                    statuses.push(status);
                 }
             } else {
-                statuses = statuses.filter((s) => s !== data);
+                statuses = statuses.filter((s) => s !== status);
             }
 
             if (statuses.length === 0) {

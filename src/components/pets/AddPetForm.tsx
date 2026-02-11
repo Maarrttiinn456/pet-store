@@ -13,7 +13,7 @@ const petStatuses = Object.values(PetStatus) as [PetStatusType, ...PetStatusType
 
 const addPetSchema = z.object({
     name: z.string().min(2, { message: "Název musí mít alespoň 2 znaky" }),
-    photoUrl: z.string().min(1, { message: "PhotosUrl je povinné" }),
+    photoUrl: z.string().min(1, { message: "Fotka je povinné" }),
     status: z.enum(petStatuses, { message: "Vyberte status" }),
 });
 
@@ -61,7 +61,7 @@ const AddPetForm = () => {
                     <FieldError errors={[errors.name]} />
                 </Field>
                 <Field>
-                    <FieldLabel htmlFor="pet-photo-url">PhotosUrl</FieldLabel>
+                    <FieldLabel htmlFor="pet-photo-url">Fotka</FieldLabel>
                     <Input id="pet-photo-url" type="text" {...register("photoUrl")} />
                     <FieldError errors={[errors.photoUrl]} />
                 </Field>

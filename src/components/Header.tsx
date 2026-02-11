@@ -12,7 +12,7 @@ const Header = () => {
             <Button
                 asChild
                 variant="link"
-                className="p-0 h-auto text-4xl font-bold text-card-foreground hover:underline"
+                className="p-0 h-auto text-3xl md:text-4xl font-bold text-card-foreground hover:underline"
             >
                 <Link to="/">Pet Store</Link>
             </Button>
