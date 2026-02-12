@@ -61,7 +61,7 @@ const AddPetForm = () => {
                     <FieldError errors={[errors.name]} />
                 </Field>
                 <Field>
-                    <FieldLabel htmlFor="pet-photo-url">Fotka</FieldLabel>
+                    <FieldLabel htmlFor="pet-photo-url">URL fotky</FieldLabel>
                     <Input id="pet-photo-url" type="text" {...register("photoUrl")} />
                     <FieldError errors={[errors.photoUrl]} />
                 </Field>
