@@ -16,7 +16,12 @@ const PetsList = ({ data = [], isLoading, isError, error, isFetching }: PetListP
     return (
         <>
             <div className="flex justify-between mb-4">
-                <div className="text-2xl  font-bold text-card-foreground">Všechna zvířátka</div>
+                <h1
+                    className="text-2xl font-bold text-card-foreground"
+                    data-testid="homepage-heading"
+                >
+                    Všechna zvířátka
+                </h1>
                 <Button asChild variant="default" size="lg" className="cursor-pointer">
                     <Link to="/add-pets">Přidat položku</Link>
                 </Button>

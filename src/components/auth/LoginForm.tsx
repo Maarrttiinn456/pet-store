@@ -58,8 +58,13 @@ const LoginForm = () => {
             <FieldGroup>
                 <Field>
                     <FieldLabel htmlFor="login-username">Username</FieldLabel>
-                    <Input id="login-username" type="text" {...register("username")} />
-                    <FieldError errors={[errors.username]} />
+                    <Input
+                        id="login-username"
+                        type="text"
+                        data-testid="login-username"
+                        {...register("username")}
+                    />
+                    <FieldError data-testid="error-username" errors={[errors.username]} />
                 </Field>
                 <Field>
                     <FieldLabel htmlFor="login-password">Password</FieldLabel>
@@ -67,14 +72,16 @@ const LoginForm = () => {
                         id="login-password"
                         type="password"
                         autoComplete="false"
+                        data-testid="login-password"
                         {...register("password")}
                     />
-                    <FieldError errors={[errors.password]} />
+                    <FieldError data-testid="error-password" errors={[errors.password]} />
                 </Field>
                 <Button
                     className="mt-4 w-full cursor-pointer"
                     type="submit"
                     disabled={isSubmitting}
+                    data-testid="login-submit"
                 >
                     {isSubmitting ? "Přihlašuji se..." : "Přihlásit se"}
                 </Button>
