@@ -9,4 +9,4 @@ jobs:
 
         steps:
             - name: Say hello
-              run: echo "Hello Martin"úýpoégt =
+              run: echo "Hello Martin"
