@@ -1,3 +1,4 @@
+import { formatPetStatus } from "@/utils/status";
 import { Checkbox } from "../ui/checkbox";
 import { Field } from "../ui/field";
 import { Input } from "../ui/input";
@@ -34,9 +35,7 @@ const PetsFilters = ({ onChangeQuery }: { onChangeQuery: (e: string) => void }) 
                                     handleChekbox(status, checked === true)
                                 }
                             />
-                            <label htmlFor={status}>
-                                {status.charAt(0).toUpperCase() + status.slice(1)}
-                            </label>
+                            <label htmlFor={status}>{formatPetStatus(status)}</label>
                         </Field>
                     ))}
                 </div>
