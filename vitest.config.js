@@ -7,6 +7,7 @@ export default defineConfig({
         globals: true,
         passWithNoTests: true,
         environment: "happy-dom",
+        exclude: ["**/node_modules/**", "**/dist/**", "**/tests/**"],
         setupFiles: [
             "@testing-library/jest-dom/vitest", // adds additional assertions for dom elements
         ],
